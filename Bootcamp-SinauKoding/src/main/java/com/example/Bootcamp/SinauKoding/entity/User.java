@@ -1,4 +1,4 @@
-package com.example.Bootcamp.SinauKoding;
+package com.example.Bootcamp.SinauKoding.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +13,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user")
-    private int idUser;
+    private Integer idUser;
 
     @Column(name = "username")
     private String username;
