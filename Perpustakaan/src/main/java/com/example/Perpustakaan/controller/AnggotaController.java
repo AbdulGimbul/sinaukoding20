@@ -6,6 +6,8 @@ import com.example.Perpustakaan.service.PerpustakaanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -19,8 +21,8 @@ public class AnggotaController {
     public Anggota saveAnggota(@RequestBody Anggota param) { return service.save(param); }
 
     @GetMapping
-    public Anggota findAll(){
-        return (Anggota) service.lihatDataAnggota();
+    public List<Anggota> findAll(){
+        return service.lihatDataAnggota();
     }
 
     @GetMapping(value = "/find-by-name")

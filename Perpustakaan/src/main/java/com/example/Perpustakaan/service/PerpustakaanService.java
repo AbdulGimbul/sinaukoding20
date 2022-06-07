@@ -7,6 +7,7 @@ import com.example.Perpustakaan.repository.BukuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -17,7 +18,8 @@ public class PerpustakaanService {
     @Autowired
     BukuRepository bukuRepository;
 
-    public Anggota save(Anggota param) { return anggotaRepository.save(param); }
+    public Anggota save(Anggota param) {
+        return anggotaRepository.save(param); }
 
     public Buku save(Buku param) { return bukuRepository.save(param); }
 
