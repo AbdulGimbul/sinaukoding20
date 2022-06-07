@@ -1,6 +1,8 @@
 package com.example.Bootcamp.SinauKoding.service;
 
+import com.example.Bootcamp.SinauKoding.entity.DetailUser;
 import com.example.Bootcamp.SinauKoding.entity.User;
+import com.example.Bootcamp.SinauKoding.repository.DetailUserRepository;
 import com.example.Bootcamp.SinauKoding.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +15,26 @@ public class UserService {
     @Autowired
     UserRepository repository;
 
+    @Autowired
+    DetailUserRepository detailUserRepository;
+
     public User save(User param){
-        return repository.save(param);
+        User user = repository.save(param);
+
+        if (!param.getDetailUserList().isEmpty()){
+            for (DetailUser detailUser : param.getDetailUserList()){
+                if (detailUser.getId() != null){
+                    detailUser = detailUserRepository.getReferenceById(detailUser.getId());
+                    detailUser.setUser(param);
+                } else {
+                    detailUser.setUser(user);
+                }
+
+                detailUserRepository.save(detailUser);
+            }
+        }
+
+        return user;
     }
 
     public List<User> lihatSemuaData(){
